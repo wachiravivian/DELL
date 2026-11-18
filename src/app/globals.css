@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-cream font-body text-bark antialiased;
+    line-height: 1.55;
+  }
+  h1, h2, h3 { @apply font-display; letter-spacing: -0.01em; }
+}
+
+@layer components {
+  .container-site { @apply mx-auto w-full max-w-site px-6 sm:px-8; }
+
+  .btn {
+    @apply inline-flex min-h-[48px] items-center justify-center rounded-full border-2 border-transparent px-6 font-bold transition-colors;
+  }
+  .btn-sun { @apply btn bg-sun text-bark hover:bg-sun-dark; }
+  .btn-olive { @apply btn bg-olive text-white hover:bg-olive-dark; }
+  .btn-outline { @apply btn border-olive text-olive hover:bg-olive-tint; }
+
+  .card { @apply rounded-3xl border border-line bg-white p-7; }
+  .eyebrow { @apply text-[13px] font-bold uppercase tracking-[0.12em] text-olive; }
+  .chip { @apply inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2 text-sm font-bold; }
+
+  .label { @apply mb-1.5 block text-sm font-bold; }
+  .field {
+    @apply block min-h-[48px] w-full rounded-xl border-[1.5px] border-[#D9C7A8] bg-white px-3.5 text-base text-bark;
+  }
+  .field:focus { @apply outline-none ring-2 ring-sun; }
+}
+/* Scroll-in animation used by the Reveal component */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+.reveal .bar { width: 0; transition: width 1s ease 0.3s; }
+.reveal.in .bar { width: var(--w); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .reveal .bar { width: var(--w); transition: none; }
+}
+
+/* Loading splash */
+.splash { animation: splash-out 0.5s ease 1.6s forwards; }
+@keyframes splash-out { to { opacity: 0; visibility: hidden; } }
+
+.mark-1, .mark-2, .mark-3 { opacity: 0; animation: mark-in 0.5s ease forwards; }
+.mark-1 { animation-delay: 0.1s; }
+.mark-2 { animation-delay: 0.4s; }
+.mark-3 { animation-delay: 0.7s; }
+@keyframes mark-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+.splash-bar { width: 0; animation: splash-load 1.6s ease forwards; }
+@keyframes splash-load { to { width: 100%; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .splash { animation-delay: 0.4s; }
+  .mark-1, .mark-2, .mark-3 { opacity: 1; animation: none; }
+  .splash-bar { width: 100%; animation: none; }
+}
+
+.fade-up { animation: fade-up 0.4s ease both; }
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) { .fade-up { animation: none; } }
+
+/* Map pins */
+.map-pin {
+  position: relative; display: block; width: 28px; height: 28px;
+  background: #F28A2E; border: 3px solid #3A2414;
+  border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3); transition: background 0.2s;
+}
+.map-pin::after {
+  content: ""; position: absolute; left: 6px; top: 6px;
+  width: 8px; height: 8px; border-radius: 50%; background: #FFFAF2;
+}
+.map-pin.on { background: #4F6B2B; }
+.leaflet-container { font-family: inherit; }
+
+/* Coverage map: your location (black pin) and the office marker */
+.user-pin {
+  position: relative; display: block; width: 28px; height: 28px;
+  background: #1c1917; border: 3px solid #fff; border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg); box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+}
+.user-pin::after {
+  content: ""; position: absolute; left: 6px; top: 6px;
+  width: 8px; height: 8px; border-radius: 50%; background: #fff;
+}
+.hq-pin {
+  display: block; width: 20px; height: 20px; border-radius: 50%;
+  background: #F28A2E; border: 3px solid #fff; box-shadow: 0 0 0 2px #E0601A;
+}
+.leaflet-tooltip.zone-label {
+  background: rgba(255, 255, 255, 0.95); border: 0; border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  color: #3A2414; font-weight: 700; font-size: 12px; padding: 2px 10px;
+}
+.leaflet-tooltip.zone-label::before { display: none; }

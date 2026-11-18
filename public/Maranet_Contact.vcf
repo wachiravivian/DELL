@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+N:;Maranet Solutions;;;
+FN:Maranet Solutions
+ORG:Maranet Solutions
+X-ABShowAs:COMPANY
+TEL;TYPE=WORK,VOICE:+254709665866
+TEL;TYPE=CELL:+254703666999
+EMAIL;TYPE=INTERNET,WORK:info@maranet.co.ke
+URL:https://www.maranet.co.ke
+ADR;TYPE=WORK:;;Upper-Lenana Junction\, along Narok-Nakuru Road;Narok;;;Kenya
+NOTE:Internet Connectivity and ICT Solutions. Connecting Communities. Powering Possibilities.
+END:VCARD
